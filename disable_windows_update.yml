@@ -1,0 +1,12 @@
+---
+- name: Disable Windows Update Service
+  hosts: windows
+  gather_facts: no
+  tasks:
+    - name: Stop Windows Update service
+      win_service:
+        name: wuauserv
+        state: stopped
+        start_mode: disabled
+      become: yes
+      become_method: runas
